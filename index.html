@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ian (Yiyang) Wang</title>
+  <meta name="description" content="Ian Wang – software engineer and data scientist. M.S. Computer Science, Northeastern University.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --ink: #1c2430;
+      --muted: #5d6877;
+      --line: #e3e7ec;
+      --accent: #1f5f8b;
+      --accent-soft: #eef4f9;
+      --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+      --sans: "Public Sans", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 64px 24px 96px;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    a:focus-visible, .btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--line);
+    }
+    .avatar {
+      flex: 0 0 auto;
+      width: 128px;
+      height: 128px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--accent-soft);
+      border: 1px solid var(--line);
+    }
+    .avatar-fallback {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-size: 44px;
+      color: var(--accent);
+    }
+    h1 {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 44px;
+      line-height: 1.1;
+      margin: 0 0 6px;
+      letter-spacing: -0.01em;
+    }
+    .tagline {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+    .contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 20px;
+      margin: 0 0 18px;
+      padding: 0;
+      list-style: none;
+      font-size: 15px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 8px 16px;
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      color: var(--accent);
+      font-size: 15px;
+      font-weight: 500;
+    }
+    .btn:hover { background: var(--accent); color: #fff; text-decoration: none; }
+
+    /* Sections */
+    section { padding-top: 48px; }
+    h2 {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 26px;
+      margin: 0 0 20px;
+    }
+    h3 {
+      font-size: 17px;
+      font-weight: 600;
+      margin: 0;
+    }
+    p { margin: 0 0 14px; }
+    ul.points { margin: 8px 0 0; padding-left: 20px; }
+    ul.points li { margin-bottom: 6px; }
+    ul.points li::marker { color: var(--muted); }
+    .meta { color: var(--muted); font-size: 15px; }
+    .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Experience: one company, two roles joined by a line */
+    .company { margin-bottom: 8px; }
+    .company-blurb { color: var(--muted); font-size: 15px; margin: 2px 0 18px; }
+    .roles { position: relative; padding-left: 26px; }
+    .roles::before {
+      content: "";
+      position: absolute;
+      left: 5px;
+      top: 10px;
+      bottom: 10px;
+      width: 2px;
+      background: var(--line);
+    }
+    .role { position: relative; padding-bottom: 26px; }
+    .role:last-child { padding-bottom: 0; }
+    .role::before {
+      content: "";
+      position: absolute;
+      left: -26px;
+      top: 7px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--accent);
+    }
+    .role:first-child::before { background: var(--accent); }
+
+    /* Projects */
+    .project { padding: 22px 0; border-top: 1px solid var(--line); }
+    .project:first-of-type { border-top: 0; padding-top: 0; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 4px; padding: 0; list-style: none; }
+    .tags li {
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 13px;
+      padding: 2px 10px;
+      border-radius: 999px;
+    }
+
+    /* Skills */
+    dl.skills { margin: 0; display: grid; grid-template-columns: 140px 1fr; gap: 10px 20px; }
+    dl.skills dt { font-weight: 600; }
+    dl.skills dd { margin: 0; color: var(--ink); }
+
+    /* Education */
+    .school { margin-bottom: 16px; }
+
+    footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      main { padding-top: 40px; }
+      header { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .avatar { width: 104px; height: 104px; }
+      h1 { font-size: 36px; }
+      dl.skills { grid-template-columns: 1fr; gap: 2px; }
+      dl.skills dd { margin-bottom: 12px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+<main>
+
+  <header>
+    <img class="avatar" src="me.png" alt="Photo of Ian (Yiyang) Wang"
+         onerror="this.style.display='none'; document.getElementById('avatar-fallback').style.display='flex';">
+    <div class="avatar avatar-fallback" id="avatar-fallback" aria-hidden="true">IW</div>
+    <div>
+      <h1>Ian Wang</h1>
+      <p class="tagline">“Computer science graduate with a background in data</p>
+      <ul class="contact">
+        <li><a href="mailto:yiyang.wang309@gmail.com">yiyang.wang309@gmail.com</a></li>
+        <li><a href="tel:+16724726931">(672) 472-6931</a></li>
+        <li><a href="https://www.linkedin.com/in/yiyang-wang-28909464/" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+      <a class="btn" href="IanWang202608.pdf" download="Ian-Wang-Resume.pdf">Download resume (PDF)</a>
+    </div>
+  </header>
+
+  <section id="about">
+    <h2>About</h2>
+    <p>I'm open to software engineering and data roles where my degree and past experience can be useful.</p>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="company">
+      <div class="row">
+        <h3>Catalina Marketing</h3>
+        <span class="meta">Chicago, IL</span>
+      </div>
+      <p class="company-blurb">Shopper intelligence and personalized marketing for CPG brands, retailers and agencies.</p>
+    </div>
+    <div class="roles">
+      <div class="role">
+        <div class="row">
+          <h3>Data Scientist</h3>
+          <span class="meta">Oct 2018 – Sep 2023</span>
+        </div>
+        <ul class="points">
+          <li>Developed shopper-targeting models from business-unit requirements, supporting marketing campaigns tied to about $15M in annual revenue.</li>
+          <li>Deployed propensity models with cross-functional teams through an Agile workflow in Azure DevOps, identifying high-potential buyers among 100M+ customers.</li>
+          <li>Restructured resource-intensive data preparation in Azure Databricks, increasing production capacity by 20%.</li>
+          <li>Integrated third-party demographic and purchase data to improve model performance and extend audience reach beyond the in-store network for digital campaigns.</li>
+          <li>Refactored legacy SAS production code into modular Python and ran backtesting plans to validate model performance.</li>
+          <li>Automated campaign reporting by pulling external vendor data through a RESTful API.</li>
+        </ul>
+      </div>
+      <div class="role">
+        <div class="row">
+          <h3>Senior Analyst</h3>
+          <span class="meta">Apr 2016 – Sep 2018</span>
+        </div>
+        <ul class="points">
+          <li>Ran post-campaign analyses measuring lift and ROI for client reporting and retention.</li>
+          <li>Delivered shopper insights and ad hoc analyses in SAS and SQL to support client acquisition and upsells.</li>
+          <li>Helped leadership and sales turn client objectives into analytical solutions and presentations.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <article class="project">
+      <div class="row">
+        <h3>Cloud-native e-commerce architecture study</h3>
+        <span class="meta">Nov 2025</span>
+      </div>
+      <ul class="tags"><li>AWS</li><li>Terraform</li><li>Docker</li><li>Locust</li></ul>
+      <ul class="points">
+        <li>Built and deployed a containerized e-commerce system on AWS and compared monolithic and microservices architectures under 300+ simulated concurrent users.</li>
+        <li>Found that microservices reached higher throughput through independent scaling, while the monolith had lower P95 latency at moderate scale.</li>
+        <li>Identified the database as the main bottleneck limiting gains from horizontal scaling.</li>
+      </ul>
+    </article>
+    <article class="project">
+      <div class="row">
+        <h3>E-commerce web application</h3>
+        <span class="meta">Nov 2024</span>
+      </div>
+      <ul class="tags"><li>JavaScript</li><li>MongoDB</li><li>Express.js</li><li>React</li><li>Node.js</li></ul>
+      <ul class="points">
+        <li>Built a full-stack MERN application with CRUD operations and JWT authentication.</li>
+        <li>Used AI coding tools to speed up code generation, debugging and refactoring.</li>
+        <li>Reached 80%+ test coverage with Jest across components and APIs.</li>
+      </ul>
+    </article>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <dl class="skills">
+      <dt>Languages</dt>
+      <dd>Python, JavaScript, TypeScript, Java, C, SAS, SQL</dd>
+      <dt>Web &amp; mobile</dt>
+      <dd>React, React Native, Node.js, Express.js, Firebase</dd>
+      <dt>Cloud &amp; DevOps</dt>
+      <dd>AWS, Terraform, Docker, Git, CI/CD, Azure DevOps</dd>
+    </dl>
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+    <div class="school">
+      <div class="row">
+        <h3>Northeastern University</h3>
+        <span class="meta">Vancouver, BC</span>
+      </div>
+      <div class="row">
+        <span>M.S. in Computer Science</span>
+        <span class="meta">Apr 2026</span>
+      </div>
+    </div>
+    <div class="school">
+      <div class="row">
+        <h3>Rutgers University</h3>
+        <span class="meta">New Brunswick, NJ</span>
+      </div>
+      <div class="row">
+        <span>M.S. in Statistics</span>
+        <span class="meta">May 2015</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © <span id="year">2026</span> Yiyang Wang
+  </footer>
+
+</main>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
